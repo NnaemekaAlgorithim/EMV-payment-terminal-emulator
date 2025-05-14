@@ -5,7 +5,7 @@
             "name": "Debug",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/my_program",
+            "program": "${workspaceFolder}/build/payment_terminal_simulator",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

@@ -1,12 +1,22 @@
+/* card_reader.h - Card reading and validation interface
+* Author: Nnaemeka Nwodo
+* Date: 2025-05-14
+*/
+
 #ifndef CARD_READER_H
 #define CARD_READER_H
 
-typedef struct {
-    char pan[20];
-    char expiry_date[5];
+#define MAX_PAN_LENGTH 20
+#define EXPIRY_LENGTH 5
+
+typedef struct
+{
+char pan[MAX_PAN_LENGTH];
+char expiry_date[EXPIRY_LENGTH];
 } Card;
 
-Card read_card();
-int validate_card(Card card);
+int read_card(Card *card);
+int validate_card(const Card *card);
+int validate_expiry_date(const char *expiry);
 
-#endif
+#endif /* CARD_READER_H */

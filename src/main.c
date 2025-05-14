@@ -1,25 +1,47 @@
+/* main.c - Main entry point for the EMV payment terminal simulator
+* Author: Nnaemeka Nwodo
+* Date: 2025-05-14
+*/
+
 #include <stdio.h>
 #include "card_reader.h"
-#include "transaction.h"
 #include "emv_validation.h"
+#include "transaction.h"
 
-int main() {
-    printf("Welcome to the Payment Terminal Simulator\n");
+int main(void)
+{
+Card card;
+printf("Welcome to the Payment Terminal Simulator\n");
 
-    Card card = read_card();
-    if (!validate_card(card)) {
-        printf("Invalid card detected. Exiting...\n");
-        return 1;
-    }
+if (!read_card(&card))
+{
+printf("Invalid card input. Exiting...\n");
+return (1);
+}
 
-    printf("Card validated. Processing transaction...\n");
-    TransactionResult result = process_transaction(card, 100.0); // Simulate $100 transaction
+if (!validate_card(&card))
+{
+printf("Invalid card detected. Exiting...\n");
+return (1);
+}
 
-    if (result.success) {
-        printf("Transaction successful! Reference: %s\n", result.reference);
-    } else {
-        printf("Transaction failed: %s\n", result.error_message);
-    }
+if (!is_emv_compliant(&card))
+{
+printf("Card is not EMV compliant. Exiting...\n");
+return (1);
+}
 
-    return 0;
+printf("Card validated. Processing transaction...\n");
+TransactionResult result = process_transaction(&card, 100.0);
+
+if (result.success)
+{
+printf("Transaction successful! Reference: %s\n", result.reference);
+}
+else
+{
+printf("Transaction failed: %s\n", result.error_message);
+}
+
+return 0;
 }

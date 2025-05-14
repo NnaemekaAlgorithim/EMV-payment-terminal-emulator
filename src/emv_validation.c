@@ -1,10 +1,17 @@
-#include <string.h>
-#include "../include/emv_validation.h"
+/* emv_validation.c - Implementation of EMV compliance checking
+* Author: Nnaemeka Nwodo
+* Date: 2025-05-14
+*/
 
-int is_emv_compliant(Card card) {
-    // Basic EMV compliance check (VISA/MasterCard BINs)
-    if (strncmp(card.pan, "4", 1) == 0 || strncmp(card.pan, "5", 1) == 0) {
-        return 1; // VISA or MasterCard
-    }
-    return 0;
+#include <string.h>
+#include "emv_validation.h"
+
+int is_emv_compliant(const Card *card)
+{
+/* Check for VISA (starts with 4) or MasterCard (starts with 5) */
+if (card->pan[0] == '4' || card->pan[0] == '5')
+{
+return (1);
+}
+return 0;
 }

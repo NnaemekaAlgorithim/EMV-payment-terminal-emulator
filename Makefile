@@ -4,7 +4,7 @@ SRC = $(wildcard src/*.c)
 OBJ = $(SRC:src/%.c=build/%.o)
 TARGET = build/payment_terminal_simulator
 
-all: $(TARGET)
+all: lint $(TARGET)
 
 $(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
@@ -12,5 +12,10 @@ $(TARGET): $(OBJ)
 build/%.o: src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+lint:
+	@betty $(SRC) include/*.h
+
 clean:
 	rm -rf build/*
+
+.PHONY: all lint clean
