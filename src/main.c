@@ -1,4 +1,5 @@
-/* main.c - Main entry point for the EMV payment terminal simulator
+/**
+* main.c - Main entry point for the EMV payment terminal simulator
 * Author: Nnaemeka Nwodo
 * Date: 2025-05-14
 */
@@ -8,6 +9,16 @@
 #include "emv_validation.h"
 #include "transaction.h"
 
+/**
+ * main - Entry point for the payment terminal simulator
+ *
+ * Description: This function simulates a payment terminal by reading,
+ * validating, and processing a card transaction. It checks if the card
+ * is valid and EMV-compliant, then processes a transaction of 100.0 units.
+ * Success or failure is printed along with relevant details.
+ *
+ * Return: 0 on success, 1 on failure
+ */
 int main(void)
 {
 Card card;
@@ -43,5 +54,5 @@ else
 printf("Transaction failed: %s\n", result.error_message);
 }
 
-return 0;
+return (0);
 }

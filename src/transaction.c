@@ -1,4 +1,5 @@
-/* transaction.c - Implementation of transaction processing
+/*
+transaction.c - Implementation of transaction processing
 * Author: Nnaemeka Nwodo
 * Date: 2025-05-14
 */
@@ -8,6 +9,19 @@
 #include <time.h>
 #include "transaction.h"
 
+/**
+ * log_transaction - Logs a transaction to a file
+ *
+ * Description: This function logs details of a transaction to a file named
+ * "transactions.log". The log includes the timestamp, card's Primary Account
+ * Number (PAN), transaction amount, reference number, success status, and
+ * any error message. If the file cannot be opened, the function silently
+ * returns without logging.
+ *
+ * @param card: Pointer to a Card struct containing card details
+ * @param amount: Transaction amount
+ * @param result: Pointer to a TransactionResult struct with transaction outcome
+ */
 static void log_transaction(const Card *card, double amount,
 const TransactionResult *result)
 {
@@ -27,6 +41,20 @@ result->success, result->error_message);
 fclose(file);
 }
 
+/**
+ * process_transaction - Processes a card transaction
+ *
+ * Description: This function simulates processing a transaction for a given
+ * card and amount. It checks if the amount is valid (greater than zero). If
+ * invalid, it logs and returns a failed result with an error message. If valid,
+ * it simulates a successful transaction, generates a reference number based on
+ * the current timestamp, logs the transaction, and returns the result.
+ *
+ * @param card: Pointer to a Card struct containing card details
+ * @param amount: Transaction amount
+ *
+ * Return: TransactionResult struct indicating success or failure
+ */
 TransactionResult process_transaction(const Card *card, double amount)
 {
 TransactionResult result = {0};

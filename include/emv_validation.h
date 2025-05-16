@@ -1,4 +1,5 @@
-/* emv_validation.h - EMV compliance checking interface
+/*
+* emv_validation.h - EMV compliance checking interface
 * Author: Nnaemeka Nwodo
 * Date: 2025-05-14
 */
